@@ -123,8 +123,9 @@ export default function Home() {
         >
           trent@trents.computer
         </a>{" "}
-        © 2021–
-        {now() ? formatDate(now()!) : ""}
+        <span style={{ display: "inline-block" }}>
+          © 2021–{now() ? formatDate(now()!) : ""}
+        </span>
       </CopyrightNotice>
     </>
   );
@@ -153,7 +154,6 @@ const CopyrightNotice = styled("small", {
     left: 0,
     right: 0,
     marginBottom: 12,
-    display: "inline-block",
     textAlign: "center",
     fontVariantNumeric: "tabular-nums",
     animation: `${fadeIn} 300ms 35ms linear both running`,

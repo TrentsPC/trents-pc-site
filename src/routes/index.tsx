@@ -107,18 +107,18 @@ export default function Home() {
         <HeartIcon
           width="15"
           class={style({
-            marginLeft: 4,
-            marginRight: 4,
+            display: "inline-block",
           })}
           preserveAspectRatio="none"
-          style={{ transform: "rotate(180deg)" }}
+          style={{ transform: "rotate(180deg) translateY(1px)" }}
         />{" "}
         by Trent at{" "}
         <a
           href="mailto:trent@trents.computer"
           class={style({
-            marginLeft: 3,
-            marginRight: 3,
+            ":hover": {
+              textDecoration: "underline",
+            },
           })}
         >
           trent@trents.computer
@@ -152,10 +152,9 @@ const CopyrightNotice = styled("small", {
     bottom: 0,
     left: 0,
     right: 0,
-    height: 64,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    marginBottom: 12,
+    display: "inline-block",
+    textAlign: "center",
     fontVariantNumeric: "tabular-nums",
     animation: `${fadeIn} 300ms 35ms linear both running`,
     ...fontScale[0],

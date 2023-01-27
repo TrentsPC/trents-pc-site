@@ -11,6 +11,7 @@ specifiers:
   '@vanilla-extract/recipes': ^0.3.0
   esbuild: ^0.14.54
   postcss: ^8.4.21
+  rollup-plugin-visualizer: ^5.9.0
   solid-js: ^1.6.9
   solid-start: ^0.2.15
   solid-start-node: ^0.2.15
@@ -35,6 +36,7 @@ devDependencies:
   '@types/node': 18.11.18
   esbuild: 0.14.54
   postcss: 8.4.21
+  rollup-plugin-visualizer: 5.9.0
   solid-start-node: 0.2.16_f63ddrunxocrtns5sxchmwmkce
   solid-start-vercel: 0.2.16_beln6p34t7mdfnglvydsh3cc6m
   typescript: 4.9.4
@@ -2962,6 +2964,22 @@ packages:
   /reusify/1.0.4:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
+
+  /rollup-plugin-visualizer/5.9.0:
+    resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}
+    engines: {node: '>=14'}
+    hasBin: true
+    peerDependencies:
+      rollup: 2.x || 3.x
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      open: 8.4.0
+      picomatch: 2.3.1
+      source-map: 0.7.4
+      yargs: 17.6.2
+    dev: true
 
   /rollup-plugin-visualizer/5.9.0_rollup@3.10.1:
     resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}

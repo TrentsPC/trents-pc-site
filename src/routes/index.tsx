@@ -6,6 +6,7 @@ import { Title } from "solid-start";
 import { HeartIcon, QuestionMarkIcon } from "~/icons/radix";
 import { theme } from "~/theme";
 import { hcl } from "~/modules/color";
+import Balancer from "~/modules/wrap-balancer";
 
 function TPCIcon() {
   return (
@@ -53,6 +54,8 @@ export default function Home() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          position: "sticky",
+          top: 0,
         })}
       >
         <div
@@ -102,6 +105,33 @@ export default function Home() {
           </h1>
         </div>
       </main>
+
+      <section
+        class={style({
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "sticky",
+          top: 0,
+        })}
+      >
+        <p
+          class={style({
+            width: "100%",
+            mixBlendMode: "difference",
+            fontSize: 24,
+            textAlign: "center",
+          })}
+        >
+          <Balancer>
+            Trent was released in late 2002 and web development has been getting
+            better ever since.
+          </Balancer>
+        </p>
+      </section>
       <CopyrightNotice>
         Made with{" "}
         <HeartIcon

@@ -3,10 +3,12 @@ import { keyframes, style } from "@macaron-css/core";
 import { createSignal } from "solid-js";
 import { isServer } from "solid-js/web";
 import { Title } from "solid-start";
-import { HeartIcon, QuestionMarkIcon } from "~/icons/radix";
+import { HeartIcon } from "~/icons/radix";
 import { theme } from "~/theme";
 import { hcl } from "~/modules/color";
 import Balancer from "~/modules/wrap-balancer";
+import "~/modules/zork";
+import { ChatWidget } from "~/components/ChatWidget";
 
 function TPCIcon() {
   return (
@@ -157,6 +159,7 @@ export default function Home() {
           © 2021–{now() ? formatDate(now()!) : ""}
         </span>
       </CopyrightNotice>
+      <ChatWidget />
     </>
   );
 }

@@ -9,7 +9,7 @@ import { theme } from "~/theme";
 
 export default function ChatWidget() {
   let scrollArea: HTMLDivElement = null!;
-  const [show, setShow] = createSignal(true);
+  const [show, setShow] = createSignal(false);
   const [prompt, setPrompt] = createSignal("");
   const [messages, setMessages] = createStore<
     Array<{ text: string; options: any; side: "left" | "right" }>

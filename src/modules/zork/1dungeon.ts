@@ -4,8 +4,6 @@
 
 import { zork } from "./zMachine";
 
-// <DIRECTIONS NORTH EAST WEST SOUTH NE NW SE SW UP DOWN IN OUT LAND>
-
 // <GLOBAL SCORE-MAX 350>
 
 // <GLOBAL FALSE-FLAG <>>
@@ -569,8 +567,7 @@ zork.addObject({
   in: "MAILBOX",
   synonyms: ["advertisement", "leaflet", "booklet", "mail"],
   adjectives: ["small"],
-  // description: "leaflet",
-  description: "advertisement",
+  description: "leaflet",
   flags: ["READBIT", "TAKEBIT", "BURNBIT"],
   longDescription: "A small leaflet is on the ground.",
   text: `"WELCOME TO ZORK!

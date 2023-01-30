@@ -24,6 +24,9 @@ const FLAGS = [
   "TAKEBIT",
   "BURNBIT",
   "TRANSBIT",
+  "NDESCBIT",
+  "TOUCHBIT",
+  "DOORBIT",
 ] as const;
 type GameFlag = typeof FLAGS[number];
 
@@ -36,7 +39,20 @@ const ROOM_GLOBALS = [
 type RoomGlobal = typeof ROOM_GLOBALS[number];
 
 type GameSyntaxObject = {
-  optional: true;
+  optional?: boolean;
+  /**
+   * Find implied object
+   */
+  find?: GameFlag;
+  /**
+   * can be any object, not just visible ones
+   */
+  everywhere?: boolean;
+  onGround?: boolean;
+  inRoom?: boolean;
+  held?: boolean;
+  carried?: boolean;
+  take?: boolean;
 };
 type GameSyntax = {
   text: string;
@@ -47,7 +63,7 @@ type GameSyntax = {
 type GameObject = {
   id: string;
   in?: string;
-  synonyms?: string[];
+  synonyms: string[];
   adjectives?: string[];
   description: string;
   longDescription?: string;
@@ -98,6 +114,38 @@ let VALID_DIRECTIONS = [
   "LAND",
 ];
 
+/**
+ * Called Buzzwords in the OG, these words can be removed from requests
+ */
+const STOP_WORDS = [
+  "AGAIN",
+  "G",
+  "OOPS",
+  "A",
+  "AN",
+  "THE",
+  "IS",
+  "AND",
+  "OF",
+  "THEN",
+  "ALL",
+  "ONE",
+  "BUT",
+  "EXCEPT",
+  ".",
+  ",",
+  '"',
+  "YES",
+  "NO",
+  "Y",
+  "HERE",
+];
+
+function getFirstWord(str: string) {
+  let [first] = str.split(" ");
+  return first;
+}
+
 class Zork {
   globals: GameGlobals = {};
   rooms: {
@@ -133,7 +181,11 @@ class Zork {
   }
 
   addObject(object: GameObject) {
-    this.objects[object.id] = object;
+    this.objects[object.id] = {
+      ...object,
+      synonyms: object.synonyms.map((s) => s.toUpperCase()),
+      adjectives: object.adjectives?.map((s) => s.toUpperCase()),
+    };
   }
 
   addVerb(verb: string, action: (zork: Zork) => void) {
@@ -146,8 +198,8 @@ class Zork {
     }
   }
 
-  addSyntax(template: string, action: string) {
-    this.syntax.push({ text: template.toUpperCase(), action });
+  addSyntax(syn: GameSyntax) {
+    this.syntax.push(syn);
   }
 
   // UTIL
@@ -178,7 +230,11 @@ class Zork {
       .split(/\s+/)
       .map((word) => this.synonyms[word] || word)
       .join(" ");
-    let requestParts = request.split(" ");
+
+    let { text: requestTemplate, objects: foundObjects } = extractTemplate(
+      request,
+      Object.values(this.objects)
+    );
 
     // Early return on direction
     if (VALID_DIRECTIONS.includes(request)) {
@@ -194,27 +250,24 @@ class Zork {
     }
 
     for (let sentence of this.syntax) {
-      if (request === sentence.text) {
-        this.perform(sentence.action);
-        return;
-      }
-      let maybeDirectObject = "";
-      let maybeIndirectObject = "";
-      let sentenceParts = sentence.text.split(" ");
-      let bad = false;
-      let i = 0;
-      for (let word of sentenceParts) {
-        if (word === "OBJECT") {
-          maybeDirectObject = requestParts[i];
-        } else {
-          if (requestParts[i] !== word) {
-            bad = true;
-          }
+      if (!sentence.objects?.length) {
+        // EXACT MATCH
+        if (request === sentence.text) {
+          this.perform(sentence.action);
+          return;
         }
-        i++;
-      }
-      if (!bad) {
-        return this.perform(sentence.action, maybeDirectObject);
+      } else {
+        if (requestTemplate !== sentence.text) {
+          continue;
+        }
+        if (foundObjects.length !== sentence.objects.length) {
+          continue;
+        }
+        return this.perform(
+          sentence.action,
+          foundObjects[0]?.id,
+          foundObjects[1]?.id
+        );
       }
     }
 
@@ -224,5 +277,37 @@ class Zork {
 
 const zork = new Zork();
 zork.setGlobal("SCORE_MAX", 350);
+
+export function extractTemplate(prompt: string, allObjects: GameObject[]) {
+  let compiledWords: string[] = [];
+  let promptWords = prompt
+    .split(" ")
+    .filter((word) => !STOP_WORDS.includes(word))
+    .reverse();
+
+  let foundObjects: GameObject[] = [];
+  let currentObject: GameObject | undefined = undefined;
+
+  for (let word of promptWords) {
+    if (!currentObject) {
+      let potential = allObjects.find((o) => o.synonyms.includes(word));
+      if (potential) {
+        foundObjects.unshift(potential);
+        currentObject = potential;
+        compiledWords.unshift("OBJECT");
+      } else {
+        compiledWords.unshift(word);
+      }
+    } else {
+      if (currentObject.adjectives?.includes(word)) {
+      } else {
+        compiledWords.unshift(word);
+        currentObject = undefined;
+      }
+    }
+  }
+
+  return { text: compiledWords.join(" "), objects: foundObjects };
+}
 
 export { zork };

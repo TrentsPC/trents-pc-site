@@ -315,8 +315,19 @@ zork.addSynonym("se", "southe");
 // <SYNTAX ODYSSEUS = V-ODYSSEUS>
 // <SYNONYM ODYSSEUS ULYSSES>
 
-zork.addSyntax("OPEN OBJECT", "OPEN");
-// <SYNTAX OPEN OBJECT (FIND DOORBIT) (HELD CARRIED ON-GROUND IN-ROOM) = V-OPEN>
+zork.addSyntax({
+  text: "OPEN OBJECT",
+  objects: [
+    {
+      find: "DOORBIT",
+      held: true,
+      carried: true,
+      onGround: true,
+      inRoom: true,
+    },
+  ],
+  action: "OPEN",
+});
 // <SYNTAX OPEN UP	OBJECT (FIND DOORBIT) (HELD CARRIED ON-GROUND IN-ROOM)
 // 	= V-OPEN>
 // <SYNTAX OPEN OBJECT (FIND DOORBIT) (HELD CARRIED ON-GROUND IN-ROOM) WITH
@@ -377,12 +388,23 @@ zork.addSyntax("OPEN OBJECT", "OPEN");
 // <SYNTAX RAISE UP OBJECT = V-RAISE>
 // <SYNONYM RAISE LIFT>
 
-// <SYNTAX RAPE OBJECT (FIND ACTORBIT) = V-RAPE>
-// <SYNONYM RAPE MOLEST>
+zork.addSyntax({ text: "RAPE OBJECT", objects: [{}], action: "RAPE" });
+zork.addSynonym("rape", "molest");
 
-zork.addSyntax("READ OBJECT", "READ");
-// <SYNTAX READ OBJECT (FIND READBIT) (HELD CARRIED ON-GROUND IN-ROOM TAKE)
-// 	= V-READ PRE-READ>
+zork.addSyntax({
+  text: "READ OBJECT",
+  objects: [
+    {
+      find: "READBIT",
+      held: true,
+      carried: true,
+      onGround: true,
+      inRoom: true,
+      take: true,
+    },
+  ],
+  action: "READ",
+});
 // <SYNTAX READ FROM OBJECT (FIND READBIT) (HELD CARRIED ON-GROUND IN-ROOM TAKE)
 // 	= V-READ PRE-READ>
 // <SYNTAX READ OBJECT (FIND READBIT) (HELD CARRIED ON-GROUND IN-ROOM TAKE)

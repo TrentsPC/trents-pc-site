@@ -2,6 +2,8 @@
 // The ZORK Trilogy
 //  started on 7/28/83 by MARC"
 
+import { zork } from "./zMachine";
+
 // "SUBTITLE GLOBAL OBJECTS"
 
 // <OBJECT GLOBAL-OBJECTS
@@ -39,11 +41,12 @@
 // (DESC "pseudo")
 // (ACTION CRETIN-FCN)>
 
-// <OBJECT IT
-// (IN GLOBAL-OBJECTS)
-// (SYNONYM IT THEM HER HIM)
-// (DESC "random object")
-// (FLAGS NDESCBIT TOUCHBIT)>
+zork.addObject({
+  id: "IT",
+  synonyms: ["it", "them", "her", "him"],
+  description: "random object",
+  flags: ["NDESCBIT", "TOUCHBIT"],
+});
 
 // <OBJECT NOT-HERE-OBJECT
 // (DESC "such thing" ;"[not here]")

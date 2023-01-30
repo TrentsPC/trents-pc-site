@@ -5,7 +5,7 @@ import { zork } from "~/modules/zork/zMachine";
 import { style } from "@macaron-css/core";
 
 export function ChatWidget() {
-  const [show, setShow] = createSignal(false);
+  const [show, setShow] = createSignal(true);
   const [prompt, setPrompt] = createSignal("");
   const [messages, setMessages] = createStore<
     Array<{ text: string; options: any }>
@@ -17,14 +17,14 @@ export function ChatWidget() {
   return (
     <>
       <button
-        onClick={() => setShow(true)}
+        onClick={() => setShow((s) => !s)}
         style={{
           position: "fixed",
           bottom: "16px",
           right: "16px",
-          width: "64px",
-          height: "64px",
-          "border-radius": "16px",
+          width: "48px",
+          height: "48px",
+          "border-radius": "24px",
           "background-color": "#ff1a55",
           color: "white",
           display: "flex",
@@ -125,10 +125,10 @@ export function ChatWidget() {
 const Root = styled("div", {
   base: {
     position: "fixed",
-    bottom: 16,
+    bottom: 16 + 48 + 16,
     right: 16,
-    width: 320,
-    height: (320 * 3) / 2,
+    width: 400,
+    height: 704,
     boxShadow: "0 0 3px rgba(0, 0, 0, 0.3)",
     display: "flex",
     flexDirection: "column",

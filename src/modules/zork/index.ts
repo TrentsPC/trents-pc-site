@@ -1,7 +1,10 @@
 import { isServer } from "solid-js/web";
-import { zork } from "./zMachine";
+import { extractTemplate, zork } from "./zMachine";
+
 import "./syntax";
 import "./1dungeon";
+import "./globals";
+
 import "./verbs";
 
 // <INSERT-FILE "GMACROS" T>
@@ -32,4 +35,3 @@ if (!isServer) {
 }
 
 zork.here = "WEST_OF_HOUSE";
-zork.perform("LOOK");

@@ -1570,7 +1570,7 @@ function walk() {
   try {
     let nextLocation =
       currentLocation?.[direction.toLowerCase() as "north"]?.();
-    if (nextLocation) {
+    if (nextLocation && zork.rooms[nextLocation]) {
       zork.here = nextLocation;
       zork.perform("LOOK");
     } else {
@@ -1702,6 +1702,9 @@ function describeRoom() {
   // TODO
   // Pretty sure this bit is actually for a HUD and not just to be printed
   zork.tell(thisRoom.description, { bold: true });
+  zork.hudListeners.forEach((l) => {
+    l({ location: thisRoom.description });
+  });
 
   if (thisRoom.action) {
     thisRoom.action("M_LOOK");

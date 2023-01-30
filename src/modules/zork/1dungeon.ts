@@ -1302,34 +1302,40 @@ zork.addRoom({
   globals: ["BOARDED_WINDOW", "BOARD", "WHITE_HOUSE", "FOREST"],
 });
 
-// <ROOM SOUTH-OF-HOUSE
-//       (IN ROOMS)
-//       (LDESC
-// "You are facing the south side of a white house. There is no door here,
-// and all the windows are boarded.")
-//       (DESC "South of House")
-//       (WEST TO WEST-OF-HOUSE)
-//       (EAST TO EAST-OF-HOUSE)
-//       (NE TO EAST-OF-HOUSE)
-//       (NW TO WEST-OF-HOUSE)
-//       (SOUTH TO FOREST-3)
-//       (NORTH "The windows are all boarded.")
-//       (FLAGS RLANDBIT ONBIT SACREDBIT)
-//       (GLOBAL BOARDED-WINDOW BOARD WHITE-HOUSE FOREST)>
+zork.addRoom({
+  id: "SOUTH_OF_HOUSE",
+  longDescription:
+    "You are facing the south side of a white house. There is no door here, and all the windows are boarded.",
+  description: "South of House",
+  west: () => "WEST_OF_HOUSE",
+  east: () => "EAST_OF_HOUSE",
+  ne: () => "EAST_OF_HOUSE",
+  nw: () => "WEST_OF_HOUSE",
+  south: () => "FOREST_3",
+  north: () => {
+    throw "The windows are all boarded.";
+  },
+  flags: ["RLANDBIT", "ONBIT", "SACREDBIT"],
+  globals: ["BOARDED_WINDOW", "BOARD", "WHITE_HOUSE", "FOREST"],
+});
+
+zork.addRoom({
+  id: "EAST_OF_HOUSE",
+  description: "Behind House",
+  north: () => "NORTH_OF_HOUSE",
+  south: () => "SOUTH_OF_HOUSE",
+  sw: () => "SOUTH_OF_HOUSE",
+  nw: () => "NORTH_OF_HOUSE",
+  east: () => "CLEARING",
+
+  flags: ["RLANDBIT", "ONBIT", "SACREDBIT"],
+  globals: ["WHITE_HOUSE", "KITCHEN_WINDOW", "FOREST"],
+});
 
 // <ROOM EAST-OF-HOUSE
-//       (IN ROOMS)
-//       (DESC "Behind House")
-//       (NORTH TO NORTH-OF-HOUSE)
-//       (SOUTH TO SOUTH-OF-HOUSE)
-//       (SW TO SOUTH-OF-HOUSE)
-//       (NW TO NORTH-OF-HOUSE)
-//       (EAST TO CLEARING)
 //       (WEST TO KITCHEN IF KITCHEN-WINDOW IS OPEN)
 //       (IN TO KITCHEN IF KITCHEN-WINDOW IS OPEN)
 //       (ACTION EAST-HOUSE)
-//       (FLAGS RLANDBIT ONBIT SACREDBIT)
-//       (GLOBAL WHITE-HOUSE KITCHEN-WINDOW FOREST)>
 
 // <ROOM FOREST-1
 //       (IN ROOMS)

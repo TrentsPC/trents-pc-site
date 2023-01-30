@@ -1,5 +1,4 @@
-import { isServer } from "solid-js/web";
-import { extractTemplate, zork } from "./zMachine";
+import { zork } from "./zMachine";
 
 import "./syntax";
 import "./1dungeon";
@@ -26,12 +25,5 @@ import "./verbs";
 /**
  * TYPESAFETY LEVELS CRITICALLY LOW!!!
  */
-
-if (!isServer) {
-  // @ts-ignore
-  window.perform = zork.perform;
-  // @ts-ignore
-  window.go = zork.go.bind(zork);
-}
 
 zork.here = "WEST_OF_HOUSE";

@@ -3,15 +3,23 @@ import { For, createSignal } from "solid-js";
 import { createStore } from "solid-js/store";
 import { zork } from "~/modules/zork/zMachine";
 import { style } from "@macaron-css/core";
+import { hcl } from "~/modules/color";
+import { hue } from "~/signals";
+import { theme } from "~/theme";
 
-export function ChatWidget() {
+export default function ChatWidget() {
+  let scrollArea: HTMLDivElement = null!;
   const [show, setShow] = createSignal(true);
   const [prompt, setPrompt] = createSignal("");
   const [messages, setMessages] = createStore<
-    Array<{ text: string; options: any }>
+    Array<{ text: string; options: any; side: "left" | "right" }>
   >([]);
+  const [location, setLocation] = createSignal("");
   zork.listen((text, options) => {
-    setMessages(messages.length, { text, options });
+    setMessages(messages.length, { text, options, side: "left" });
+  });
+  zork.hudListen(({ location }) => {
+    setLocation(location);
   });
   zork.perform("LOOK");
   return (
@@ -25,7 +33,7 @@ export function ChatWidget() {
           width: "48px",
           height: "48px",
           "border-radius": "24px",
-          "background-color": "#ff1a55",
+          "background-color": hcl(hue(), 30, 80),
           color: "white",
           display: "flex",
           "justify-content": "center",
@@ -56,9 +64,13 @@ export function ChatWidget() {
               "justify-content": "space-between",
               "padding-left": "6px",
               "padding-right": "6px",
+              height: "64px",
+              padding: "0 16px 0",
+              "background-color": hcl(hue(), 30, 80),
+              color: "white",
             }}
           >
-            <div>Chat</div>
+            <div>{location()}</div>
             <button onClick={() => setShow(false)}>
               <svg
                 width="15"
@@ -77,20 +89,43 @@ export function ChatWidget() {
             </button>
           </div>
           <div
+            ref={scrollArea}
             class={style({
               flex: 1,
               overflow: "auto",
+              padding: "16px",
             })}
           >
             <For each={messages}>
               {(message) => (
                 <div
+                  class={style({
+                    display: "flex",
+                  })}
                   style={{
-                    "font-weight": message.options.bold ? 600 : 400,
-                    "white-space": "pre-wrap",
+                    "justify-content":
+                      message.side === "right" ? "end" : "start",
+                    margin: message.side === "right" ? "16px 0" : "0",
                   }}
                 >
-                  {message.text}
+                  <div
+                    style={{
+                      "font-weight": message.options.bold ? 600 : 400,
+                      "white-space": "pre-wrap",
+                      "max-width": "80%",
+                      padding: "8px 12px",
+                      "font-size": "14px",
+                      "background-color":
+                        message.side === "right"
+                          ? hcl(hue(), 30, 80)
+                          : hcl(0, 0, 95),
+                      color: message.side === "right" ? "white" : theme.text1,
+                      "margin-top": "2px",
+                      "border-radius": "20px",
+                    }}
+                  >
+                    {message.text}
+                  </div>
                 </div>
               )}
             </For>
@@ -99,18 +134,21 @@ export function ChatWidget() {
             onSubmit={(e) => {
               e.preventDefault();
               setMessages(messages.length, {
-                text: "\n> " + prompt(),
+                text: prompt(),
                 options: {},
+                side: "right",
               });
               zork.go(prompt());
               setPrompt("");
+              scrollArea.scrollTo({ top: scrollArea.scrollHeight });
             }}
           >
             <input
-              style={{ border: "1px solid black" }}
               value={prompt()}
               class={style({
                 width: "100%",
+                padding: "8px 16px 8px",
+                borderTop: "1px solid black",
               })}
               onChange={(e) => setPrompt(e.currentTarget.value)}
             />
@@ -133,5 +171,7 @@ const Root = styled("div", {
     display: "flex",
     flexDirection: "column",
     backgroundColor: "white",
+    borderRadius: 16,
+    overflow: "hidden",
   },
 });

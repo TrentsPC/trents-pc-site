@@ -35,6 +35,7 @@ const ROOM_GLOBALS = [
   "BOARD",
   "FOREST",
   "BOARDED_WINDOW",
+  "KITCHEN_WINDOW",
 ] as const;
 type RoomGlobal = typeof ROOM_GLOBALS[number];
 
@@ -86,6 +87,7 @@ type GameRoom = {
   se?: NavigateFn;
   west?: NavigateFn;
   east?: NavigateFn;
+  nw?: NavigateFn;
   sw?: NavigateFn;
   in?: NavigateFn;
   action?: RoomAction;
@@ -96,6 +98,7 @@ type GameRoom = {
 export type TellOptions = {
   bold?: boolean;
 };
+export type HudListener = ({ location }: { location: string }) => void;
 export type TellListener = (text: string, options: TellOptions) => void;
 
 let VALID_DIRECTIONS = [
@@ -141,11 +144,6 @@ const STOP_WORDS = [
   "HERE",
 ];
 
-function getFirstWord(str: string) {
-  let [first] = str.split(" ");
-  return first;
-}
-
 class Zork {
   globals: GameGlobals = {};
   rooms: {
@@ -168,6 +166,7 @@ class Zork {
   indirectObject?: string;
 
   // CLIENTS
+  hudListeners: HudListener[] = [];
   listeners: TellListener[] = [];
   // END
 
@@ -221,6 +220,9 @@ class Zork {
   listen(listener: TellListener) {
     this.listeners.push(listener);
   }
+  hudListen(listener: HudListener) {
+    this.hudListeners.push(listener);
+  }
 
   // PARSE
   go(rawRequest: string) {
@@ -246,6 +248,13 @@ class Zork {
       VALID_DIRECTIONS.includes(request.slice(5))
     ) {
       this.perform("WALK", request.slice(5));
+      return;
+    }
+    if (
+      request.startsWith("GO ") &&
+      VALID_DIRECTIONS.includes(request.slice(3))
+    ) {
+      this.perform("WALK", request.slice(3));
       return;
     }
 

@@ -3,7 +3,7 @@ import { styled } from "@macaron-css/solid";
 import { createEffect, createSignal } from "solid-js";
 
 export function Recaptcha() {
-  const [open, setOpen] = createSignal(false);
+  const [open, setOpen] = createSignal(true);
   return (
     <Root>
       <AnchorContent>
@@ -95,6 +95,25 @@ export function Recaptcha() {
             <Square />
             <Square />
             <Square />
+          </div>
+          <div
+            class={style({
+              display: "flex",
+              marginTop: 8,
+            })}
+          >
+            <button
+              class={style({
+                backgroundColor: "#1a73e8",
+                padding: "0 32px",
+                borderRadius: 2,
+                height: 40,
+                marginLeft: "auto",
+                color: "white",
+              })}
+            >
+              SKIP
+            </button>
           </div>
         </div>
       )}

@@ -3,13 +3,15 @@ import { keyframes, style } from "@macaron-css/core";
 import { Suspense, createSignal, lazy } from "solid-js";
 import { isServer } from "solid-js/web";
 import { Title } from "solid-start";
-import { HeartIcon } from "~/icons/radix";
+import { Cross1Icon, HeartIcon } from "~/icons/radix";
 import { theme } from "~/theme";
 import Balancer from "~/modules/wrap-balancer";
 import "~/modules/zork";
 import { hcl } from "~/modules/color";
 import { hue } from "~/signals";
 import "~/modules/sokoban";
+import { Dialog } from "~/modules/radix";
+import { Recaptcha } from "~/components/Recaptcha";
 const ChatWidget = lazy(() => import("~/components/ChatWidget"));
 
 function TPCIcon() {
@@ -49,6 +51,7 @@ export default function Home() {
   return (
     <>
       <Title>Trents.Computer</Title>
+      <SignUpDialog />
       <main
         class={style({
           width: "100vw",
@@ -202,3 +205,68 @@ const CopyrightNotice = styled("small", {
     color: theme.text2,
   },
 });
+
+function SignUpDialog() {
+  const [open, setOpen] = createSignal(false);
+  return (
+    <Dialog.Root open={open} onOpenChange={setOpen}>
+      <Dialog.Trigger
+        class={style({
+          position: "fixed",
+          top: 16,
+          right: 16,
+          zIndex: 9999,
+        })}
+      >
+        Sign Up
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay
+          class={style({
+            position: "fixed",
+            inset: 0,
+            zIndex: 999999,
+            backgroundColor: "hsla(0deg, 0%, 20%, 0.6)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          })}
+        >
+          <Dialog.Content
+            class={style({
+              minWidth: 280,
+              padding: 24,
+              borderRadius: 28,
+              backgroundColor: "white",
+              position: "relative",
+            })}
+          >
+            <Dialog.Close
+              class={style({
+                width: "48px",
+                height: "48px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute",
+                right: 0,
+                bottom: "100%",
+              })}
+            >
+              <Cross1Icon color="white" />
+            </Dialog.Close>
+            <Dialog.Title
+              class={style({
+                fontSize: "24px",
+                marginBottom: "16px",
+              })}
+            >
+              Sign up
+            </Dialog.Title>
+            <Recaptcha />
+          </Dialog.Content>
+        </Dialog.Overlay>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}

@@ -25,6 +25,10 @@ export default function ChatWidget() {
   return (
     <>
       <button
+        type="button"
+        aria-haspopup="dialog"
+        aria-expanded={show() ? "true" : "false"}
+        data-state={show() ? "open" : "closed"}
         onClick={() => setShow((s) => !s)}
         style={{
           position: "fixed",
@@ -56,7 +60,7 @@ export default function ChatWidget() {
         </svg>
       </button>
       {show() && (
-        <Root>
+        <Root role="dialog">
           <div
             style={{
               display: "flex",

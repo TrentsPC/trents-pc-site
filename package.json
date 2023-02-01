@@ -12,9 +12,9 @@
     "esbuild": "^0.14.54",
     "postcss": "^8.4.21",
     "rollup-plugin-visualizer": "^5.9.0",
-    "solid-start-node": "^0.2.15",
-    "solid-start-vercel": "^0.2.16",
-    "typescript": "^4.9.4",
+    "solid-start-node": "^0.2.18",
+    "solid-start-vercel": "^0.2.18",
+    "typescript": "^4.9.5",
     "vite": "^3.2.5"
   },
   "dependencies": {
@@ -25,9 +25,10 @@
     "@solidjs/router": "^0.7.0",
     "@vanilla-extract/css": "^1.9.3",
     "@vanilla-extract/recipes": "^0.3.0",
-    "solid-js": "^1.6.9",
-    "solid-start": "^0.2.15",
-    "undici": "^5.15.1"
+    "solid-js": "^1.6.10",
+    "solid-start": "^0.2.18",
+    "solid-transition-group": "^0.0.13",
+    "undici": "^5.16.0"
   },
   "engines": {
     "node": ">=16.8"

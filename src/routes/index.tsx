@@ -161,6 +161,8 @@ export default function Home() {
         <span style={{ display: "inline-block" }}>
           © 2021–{now() ? formatDate(now()!) : ""}
         </span>
+        {". "}
+        Trespassers will be prosecuted.
       </CopyrightNotice>
       {/* <img
         style="position: absolute; top: 0; right: 0; border: 0;"
@@ -191,6 +193,15 @@ const fadeIn = keyframes({
   },
 });
 
+const fadeOut = keyframes({
+  from: {
+    opacity: 1,
+  },
+  to: {
+    opacity: 0,
+  },
+});
+
 const CopyrightNotice = styled("small", {
   base: {
     position: "fixed",
@@ -209,7 +220,7 @@ const CopyrightNotice = styled("small", {
 function SignUpDialog() {
   const [open, setOpen] = createSignal(false);
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root open={open()} onOpenChange={setOpen}>
       <Dialog.Trigger
         class={style({
           position: "fixed",
@@ -230,7 +241,15 @@ function SignUpDialog() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-          })}
+            selectors: {
+              "&[data-state=open]": {
+                animation: `${fadeIn} 300ms`,
+              },
+              "&[data-state=closed]": {
+                animation: `${fadeOut} 300ms`,
+              },
+            },
+          } as any)}
         >
           <Dialog.Content
             class={style({

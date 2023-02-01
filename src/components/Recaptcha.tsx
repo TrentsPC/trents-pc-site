@@ -3,7 +3,7 @@ import { styled } from "@macaron-css/solid";
 import { createEffect, createSignal } from "solid-js";
 
 export function Recaptcha() {
-  const [open, setOpen] = createSignal(true);
+  const [open, setOpen] = createSignal(false);
   return (
     <Root>
       <AnchorContent>
@@ -64,7 +64,7 @@ export function Recaptcha() {
                 fontSize: 28,
               })}
             >
-              an even average rgb value
+              an even total rgb value
             </div>
             If there are none, click skip
           </div>

@@ -14,6 +14,8 @@ import {
 import { mergeRefs } from "./refs";
 import { composeEventHandlers } from "../core/primitive";
 import { Portal } from "solid-js/web";
+import { Presence } from "./Presence";
+// import { Transition } from "./Transition";
 
 type DialogContextValue = {
   triggerRef: HTMLButtonElement;
@@ -33,9 +35,9 @@ const DialogContext = createContext<DialogContextValue>(
 
 interface DialogProps {
   children?: JSX.Element;
-  open: Accessor<boolean>;
+  open: boolean;
   onOpenChange?: Setter<boolean>;
-  modal?: Accessor<boolean>;
+  modal?: boolean;
 }
 
 const DialogRoot = (props: DialogProps) => {
@@ -50,10 +52,10 @@ const DialogRoot = (props: DialogProps) => {
         contentId: createUniqueId(),
         titleId: createUniqueId(),
         descriptionId: createUniqueId(),
-        open: props.open,
+        open: () => props.open || false,
         onOpenChange: props.onOpenChange || (() => {}),
         onOpenToggle: () => props.onOpenChange?.((i) => !i),
-        modal: props.modal || (() => false),
+        modal: () => props.modal || true,
       }}
     >
       {props.children}
@@ -103,8 +105,7 @@ type DialogPortalProps = {
 };
 
 const DialogPortal = (props: DialogPortalProps) => {
-  const context = useContext(DialogContext);
-  return <>{context.open() ? <Portal>{props.children}</Portal> : null}</>;
+  return <Portal>{props.children}</Portal>;
 };
 
 /* -------------------------------------------------------------------------------------------------
@@ -121,16 +122,14 @@ const DialogOverlay = (props: DialogOverlayProps) => {
       ? overlayProps.style
       : {};
   return (
-    // Make sure `Content` is scrollable even when it doesn't live inside `RemoveScroll`
-    // ie. when `Overlay` and `Content` are siblings
-    // <RemoveScroll as={Slot} allowPinchZoom shards={[context.contentRef]}>
-    <div
-      data-state={context.open() ? "open" : "closed"}
-      {...overlayProps}
-      // We re-enable pointer-events prevented by `Dialog.Content` to allow scrolling the overlay.
-      style={{ "pointer-events": "auto", ...style }}
-    />
-    // </RemoveScroll>
+    <Presence visible={context.open()}>
+      <div
+        data-state={context.open() ? "open" : "closed"}
+        {...overlayProps}
+        // We re-enable pointer-events prevented by `Dialog.Content` to allow scrolling the overlay.
+        style={{ "pointer-events": "auto", ...style }}
+      />
+    </Presence>
   );
 };
 
@@ -150,37 +149,39 @@ const DialogContentNonModal = (props: DialogContentProps) => {
   let hasInteractedOutsideRef = false;
 
   return (
-    <DialogContentImpl
-      {...props}
-      // trapFocus={false}
-      // disableOutsidePointerEvents={false}
-      // onCloseAutoFocus={(event) => {
-      //   // props.onCloseAutoFocus?.(event);
+    <Presence visible={context.open()}>
+      <DialogContentImpl
+        {...props}
+        // trapFocus={false}
+        // disableOutsidePointerEvents={false}
+        // onCloseAutoFocus={(event) => {
+        //   // props.onCloseAutoFocus?.(event);
 
-      //   if (!event.defaultPrevented) {
-      //     if (!hasInteractedOutsideRef) context.triggerRef?.focus();
-      //     // Always prevent auto focus because we either focus manually or want user agent focus
-      //     event.preventDefault();
-      //   }
+        //   if (!event.defaultPrevented) {
+        //     if (!hasInteractedOutsideRef) context.triggerRef?.focus();
+        //     // Always prevent auto focus because we either focus manually or want user agent focus
+        //     event.preventDefault();
+        //   }
 
-      //   hasInteractedOutsideRef = false;
-      // }}
-      // onInteractOutside={(event) => {
-      //   // props.onInteractOutside?.(event);
+        //   hasInteractedOutsideRef = false;
+        // }}
+        // onInteractOutside={(event) => {
+        //   // props.onInteractOutside?.(event);
 
-      //   if (!event.defaultPrevented) hasInteractedOutsideRef = true;
+        //   if (!event.defaultPrevented) hasInteractedOutsideRef = true;
 
-      //   // Prevent dismissing when clicking the trigger.
-      //   // As the trigger is already setup to close, without doing so would
-      //   // cause it to close and immediately open.
-      //   //
-      //   // We use `onInteractOutside` as some browsers also
-      //   // focus on pointer down, creating the same issue.
-      //   const target = event.target as HTMLElement;
-      //   const targetIsTrigger = context.triggerRef?.contains(target);
-      //   if (targetIsTrigger) event.preventDefault();
-      // }}
-    />
+        //   // Prevent dismissing when clicking the trigger.
+        //   // As the trigger is already setup to close, without doing so would
+        //   // cause it to close and immediately open.
+        //   //
+        //   // We use `onInteractOutside` as some browsers also
+        //   // focus on pointer down, creating the same issue.
+        //   const target = event.target as HTMLElement;
+        //   const targetIsTrigger = context.triggerRef?.contains(target);
+        //   if (targetIsTrigger) event.preventDefault();
+        // }}
+      />
+    </Presence>
   );
 };
 

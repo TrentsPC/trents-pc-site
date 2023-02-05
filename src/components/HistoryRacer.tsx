@@ -28,7 +28,7 @@ export function HistoryRacer() {
   });
 
   const currentLyric = () =>
-    chart().lyrics?.findLast((l) => l.start <= currentBeat());
+    chart().lyrics?.findLast?.((l) => l.start <= currentBeat());
 
   function reset() {
     setMaxX(0);

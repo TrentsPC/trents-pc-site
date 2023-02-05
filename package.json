@@ -12,8 +12,8 @@
     "esbuild": "^0.14.54",
     "postcss": "^8.4.21",
     "rollup-plugin-visualizer": "^5.9.0",
-    "solid-start-node": "^0.2.18",
-    "solid-start-vercel": "^0.2.18",
+    "solid-start-node": "^0.2.19",
+    "solid-start-vercel": "^0.2.19",
     "typescript": "^4.9.5",
     "vite": "^3.2.5"
   },
@@ -26,7 +26,7 @@
     "@vanilla-extract/css": "^1.9.3",
     "@vanilla-extract/recipes": "^0.3.0",
     "solid-js": "^1.6.10",
-    "solid-start": "^0.2.18",
+    "solid-start": "^0.2.19",
     "solid-transition-group": "^0.0.13",
     "undici": "^5.16.0"
   },

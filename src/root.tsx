@@ -1,7 +1,6 @@
 // @refresh reload
 import { Suspense } from "solid-js";
 import {
-  A,
   Body,
   ErrorBoundary,
   FileRoutes,
@@ -13,10 +12,24 @@ import {
   Title,
 } from "solid-start";
 import "./root.css";
+import { hcl } from "./modules/color";
+import { hue } from "./signals";
 
 export default function Root() {
   return (
-    <Html lang="en">
+    <Html
+      lang="en"
+      style={{
+        "--color-brand": hcl(hue(), 27, 80),
+        "--color-brand2": hcl(hue() - 10, 27, 80),
+        "--color-brand3": hcl(hue() - 20, 27, 80),
+        "--color-brand4": hcl(hue() - 30, 27, 80),
+        "--color-brand5": hcl(hue() - 40, 27, 80),
+        "--color-brand6": hcl(hue() - 50, 27, 80),
+        "--color-brand7": hcl(hue() - 60, 27, 80),
+        "--color-brand-vibrant": hcl(hue(), 40, 60),
+      }}
+    >
       <Head>
         <Title>Trents.Computer</Title>
         <Meta charset="utf-8" />

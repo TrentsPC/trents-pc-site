@@ -7,20 +7,12 @@ import { Cross1Icon, HeartIcon } from "~/icons/radix";
 import { theme } from "~/theme";
 import Balancer from "~/modules/wrap-balancer";
 import "~/modules/zork";
-import { hcl } from "~/modules/color";
-import { hue } from "~/signals";
+// import { hue } from "~/signals";
 import "~/modules/sokoban";
 import { Dialog } from "~/modules/radix";
 import { Recaptcha } from "~/components/Recaptcha";
+import { HistoryRacer } from "~/components/HistoryRacer";
 const ChatWidget = lazy(() => import("~/components/ChatWidget"));
-
-function TPCIcon() {
-  return (
-    <svg width="34" height="34" viewBox="0 0 24 24">
-      <path fill="black" d="M 12 0 L 24 12 L 12 24 L 0 12 Z" />
-    </svg>
-  );
-}
 
 const [now, setNow] = createSignal<Date | undefined>(undefined);
 
@@ -51,6 +43,7 @@ export default function Home() {
   return (
     <>
       <Title>Trents.Computer</Title>
+      <HistoryRacer />
       <SignUpDialog />
       <main
         class={style({
@@ -90,7 +83,7 @@ export default function Home() {
             viewBox="0 0 24 24"
           >
             <path
-              fill={hcl(hue(), 30, 80)}
+              fill={"var(--color-brand)"}
               d="M 12 0 L 24 12 L 12 24 L 0 12 Z"
             />
           </svg>

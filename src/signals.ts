@@ -2,10 +2,10 @@ import { createSignal } from "solid-js";
 import { isServer } from "solid-js/web";
 
 export const [hue, setHue] = createSignal(0);
-function updateDate() {
-  setHue(hue() + 1);
+function updateHue() {
+  setHue((hue() + 1) % 360);
   requestAnimationFrame(() => {
-    updateDate();
+    updateHue();
   });
 }
-!isServer && updateDate();
+!isServer && updateHue();

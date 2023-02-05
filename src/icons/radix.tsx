@@ -27,6 +27,28 @@ export function HeartIcon(props: IconProps) {
   );
 }
 
+export function HeartFilledIcon(props: IconProps) {
+  props = mergeProps({ color: "currentColor" }, props);
+  const [color, rest] = splitProps(props, ["color"]);
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...rest}
+    >
+      <path
+        d="M 1.3525 4.9053 C 1.3525 2.945 2.936 1.3525 4.8935 1.3525 C 6.0084 1.3525 6.735 1.7605 7.2088 2.2953 C 7.3206 2.4215 7.4169 2.5538 7.5 2.6854 C 7.5832 2.5538 7.6794 2.4215 7.7912 2.2953 C 8.265 1.7605 8.9916 1.3525 10.1066 1.3525 C 12.064 1.3525 13.6476 2.945 13.6476 4.9053 C 13.6476 6.7404 12.6013 8.5051 11.4008 9.9693 C 10.2636 11.3562 8.9219 12.5508 8.006 13.3664 C 7.9464 13.4194 7.8887 13.4709 7.8329 13.5206 C 7.6432 13.6899 7.3568 13.6899 7.1671 13.5206 C 7.1113 13.4709 7.0536 13.4194 6.994 13.3664 C 6.0781 12.5508 4.7364 11.3562 3.5993 9.9693 C 2.3987 8.5051 1.3525 6.7404 1.3525 4.9053 Z"
+        fill={color.color}
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+      />
+    </svg>
+  );
+}
+
 export function QuestionMarkIcon(props: IconProps) {
   props = mergeProps({ color: "currentColor" }, props);
   const [color, rest] = splitProps(props, ["color"]);
@@ -63,6 +85,28 @@ export function Cross1Icon(props: IconProps) {
     >
       <path
         d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z"
+        fill={color.color}
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+  );
+}
+
+export function Cross2Icon(props: IconProps) {
+  props = mergeProps({ color: "currentColor" }, props);
+  const [color, rest] = splitProps(props, ["color"]);
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...rest}
+    >
+      <path
+        d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
         fill={color.color}
         fill-rule="evenodd"
         clip-rule="evenodd"

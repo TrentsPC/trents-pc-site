@@ -4,7 +4,6 @@ import { createStore } from "solid-js/store";
 import { zork } from "~/modules/zork/zMachine";
 import { style } from "@macaron-css/core";
 import { hcl } from "~/modules/color";
-import { hue } from "~/signals";
 import { theme } from "~/theme";
 
 export default function ChatWidget() {
@@ -37,7 +36,7 @@ export default function ChatWidget() {
           width: "48px",
           height: "48px",
           "border-radius": "24px",
-          "background-color": hcl(hue(), 30, 80),
+          "background-color": "var(--color-brand)",
           color: "white",
           display: "flex",
           "justify-content": "center",
@@ -70,7 +69,7 @@ export default function ChatWidget() {
               "padding-right": "6px",
               height: "64px",
               padding: "0 16px 0",
-              "background-color": hcl(hue(), 30, 80),
+              "background-color": "var(--color-brand)",
               color: "white",
             }}
           >
@@ -121,7 +120,7 @@ export default function ChatWidget() {
                       "font-size": "14px",
                       "background-color":
                         message.side === "right"
-                          ? hcl(hue(), 30, 80)
+                          ? "var(--color-brand)"
                           : hcl(0, 0, 95),
                       color: message.side === "right" ? "white" : theme.text1,
                       "margin-top": "2px",

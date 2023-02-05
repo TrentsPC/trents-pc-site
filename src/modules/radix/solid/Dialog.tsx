@@ -15,6 +15,7 @@ import { mergeRefs } from "./refs";
 import { composeEventHandlers } from "../core/primitive";
 import { Portal } from "solid-js/web";
 import { Presence } from "./Presence";
+import { createControllableSignal } from "./createControllableSignal";
 // import { Transition } from "./Transition";
 
 type DialogContextValue = {
@@ -35,7 +36,8 @@ const DialogContext = createContext<DialogContextValue>(
 
 interface DialogProps {
   children?: JSX.Element;
-  open: boolean;
+  defaultOpen?: boolean;
+  open?: boolean;
   onOpenChange?: Setter<boolean>;
   modal?: boolean;
 }
@@ -43,6 +45,11 @@ interface DialogProps {
 const DialogRoot = (props: DialogProps) => {
   const triggerRef: HTMLButtonElement = null!;
   const contentRef: DialogContentElement = null!;
+  const [open, setOpen] = createControllableSignal({
+    prop: () => props.open,
+    defaultProp: () => props.defaultOpen,
+    onChange: props.onOpenChange,
+  });
 
   return (
     <DialogContext.Provider
@@ -52,9 +59,9 @@ const DialogRoot = (props: DialogProps) => {
         contentId: createUniqueId(),
         titleId: createUniqueId(),
         descriptionId: createUniqueId(),
-        open: () => props.open || false,
-        onOpenChange: props.onOpenChange || (() => {}),
-        onOpenToggle: () => props.onOpenChange?.((i) => !i),
+        open: () => open() || false,
+        onOpenChange: setOpen || (() => {}),
+        onOpenToggle: () => setOpen?.((i) => !i),
         modal: () => props.modal || true,
       }}
     >

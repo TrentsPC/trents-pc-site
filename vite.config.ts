@@ -7,9 +7,9 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [
     macaronVitePlugin(),
-    visualizer({ brotliSize: true, template: "treemap" }),
     solid({
       adapter: vercel(),
     }),
+    visualizer({ brotliSize: true, template: "treemap" }),
   ],
 });

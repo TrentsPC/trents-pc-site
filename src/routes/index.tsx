@@ -12,6 +12,9 @@ import "~/modules/sokoban";
 import { Dialog } from "~/modules/radix";
 import { Recaptcha } from "~/components/Recaptcha";
 import { HistoryRacer } from "~/components/HistoryRacer";
+
+import "~/modules/markov";
+
 const ChatWidget = lazy(() => import("~/components/ChatWidget"));
 
 const [now, setNow] = createSignal<Date | undefined>(undefined);

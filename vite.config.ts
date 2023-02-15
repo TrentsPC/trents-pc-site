@@ -3,10 +3,12 @@ import vercel from "solid-start-vercel";
 import { visualizer } from "rollup-plugin-visualizer";
 import { macaronVitePlugin } from "@macaron-css/vite";
 import { defineConfig } from "vite";
+// import suture from "./src/modules/suture/vite";
 
 export default defineConfig({
   plugins: [
     macaronVitePlugin(),
+    // suture(),
     solid({
       adapter: vercel(),
     }),

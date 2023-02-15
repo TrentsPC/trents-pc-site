@@ -10,7 +10,7 @@ interface AspectRatioProps extends PrimitiveDivProps {
   style?: JSX.CSSProperties;
 }
 
-const AspectRatio = (props: AspectRatioProps) => {
+const Root = (props: AspectRatioProps) => {
   const { ratio = 1 / 1, style, ...aspectRatioProps } = props;
   return (
     <div
@@ -41,5 +41,5 @@ const AspectRatio = (props: AspectRatioProps) => {
 
 /* -----------------------------------------------------------------------------------------------*/
 
-export { AspectRatio };
+export const AspectRatio = { Root };
 export type { AspectRatioProps };

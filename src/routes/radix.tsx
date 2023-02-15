@@ -5,6 +5,7 @@ import { isServer } from "solid-js/web";
 import { A, Outlet } from "solid-start";
 import { HeartIcon } from "~/icons/radix";
 import { theme } from "~/theme";
+import "~/constants/suture.config";
 
 function TPCIcon() {
   return (

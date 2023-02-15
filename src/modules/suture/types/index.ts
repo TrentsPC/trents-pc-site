@@ -1,5 +1,3 @@
-import type { Suture } from "./suture";
-
 import type * as Config from "./config";
 import type * as CSSUtil from "./css-util";
 import type * as StyledComponent from "./styled-component";

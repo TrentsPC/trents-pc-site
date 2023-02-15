@@ -147,17 +147,26 @@ const PopoverPortal = (props: PopoverPortalProps) => {
  * PopoverContent
  * -----------------------------------------------------------------------------------------------*/
 
-const PopoverContent = (props: any) => {
-  return <div {...props} />;
+type PopoverContentProps = {
+  forceMount?: boolean;
+} & any;
+
+const PopoverContent = (props: PopoverContentProps) => {
+  const context = useContext(PopoverContext);
+  return (
+    <Presence visible={props.forceMount || context.open()}>
+      <div {...props} />
+    </Presence>
+  );
 };
 
 /* -------------------------------------------------------------------------------------------------
- * DialogClose
+ * PopoverClose
  * -----------------------------------------------------------------------------------------------*/
 
-type DialogCloseProps = JSX.HTMLAttributes<HTMLButtonElement>;
+type PopoverCloseProps = JSX.HTMLAttributes<HTMLButtonElement>;
 
-const DialogClose = (props: DialogCloseProps) => {
+const PopoverClose = (props: PopoverCloseProps) => {
   const context = useContext(PopoverContext);
   return (
     <button
@@ -187,7 +196,7 @@ export const Popover = {
   Trigger: DialogTrigger,
   Portal: PopoverPortal,
   Content: PopoverContent,
-  Close: DialogClose,
+  Close: PopoverClose,
   Arrow: PopoverArrow,
 };
 

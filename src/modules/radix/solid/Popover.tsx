@@ -1,7 +1,3 @@
-/* -------------------------------------------------------------------------------------------------
- * Dialog
- * -----------------------------------------------------------------------------------------------*/
-
 import {
   Accessor,
   JSX,
@@ -23,6 +19,16 @@ import { createControllableSignal } from "./createControllableSignal";
 import { arrow, computePosition, flip, offset, shift } from "@floating-ui/dom";
 import { Measurable } from "../core/rect";
 // import { Transition } from "./Transition";
+
+const SIDE_OPTIONS = ["top", "right", "bottom", "left"] as const;
+const ALIGN_OPTIONS = ["start", "center", "end"] as const;
+
+type Side = typeof SIDE_OPTIONS[number];
+type Align = typeof ALIGN_OPTIONS[number];
+
+/* -------------------------------------------------------------------------------------------------
+ * Dialog
+ * -----------------------------------------------------------------------------------------------*/
 
 type PopoverContextValue = {
   // From Popper
@@ -147,7 +153,21 @@ const PopoverPortal = (props: PopoverPortalProps) => {
  * PopoverContent
  * -----------------------------------------------------------------------------------------------*/
 
-type PopoverContentProps = {
+type Boundary = Element | null;
+
+type PopoverContentProps = JSX.HTMLAttributes<HTMLDivElement> & {
+  side?: Side;
+  sideOffset?: number;
+  align?: Align;
+  alignOffset?: number;
+  arrowPadding?: number;
+  collisionBoundary?: Boundary | Boundary[];
+  collisionPadding?: number | Partial<Record<Side, number>>;
+  sticky?: "partial" | "always";
+  hideWhenDetached?: boolean;
+  avoidCollisions?: boolean;
+  onPlaced?: () => void;
+
   forceMount?: boolean;
 } & any;
 

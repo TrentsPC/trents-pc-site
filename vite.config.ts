@@ -21,6 +21,6 @@ export default defineConfig({
     solid({
       adapter: vercel(),
     }),
-    visualizer({ brotliSize: true, template: "treemap" }),
+    visualizer({ brotliSize: true, template: "treemap" }) as any,
   ],
 });

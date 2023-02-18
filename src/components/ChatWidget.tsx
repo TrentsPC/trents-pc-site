@@ -40,9 +40,6 @@ export default function ChatWidget() {
         aria-expanded={show() ? "true" : "false"}
         data-state={show() ? "open" : "closed"}
         onClick={() => setShow((s) => !s)}
-        css={{
-          position: "fixed",
-        }}
         style={{
           position: "fixed",
           bottom: "16px",

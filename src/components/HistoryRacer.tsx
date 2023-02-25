@@ -14,7 +14,7 @@ import { theme } from "~/theme";
 import { createBeatRacer } from "~/modules/beat-racer";
 import { Presence } from "~/modules/radix/solid/Presence";
 import cover from "./gloria-cover.png";
-import { HeartFilledIcon } from "~/icons/radix";
+import { HeartFilledIcon } from "solid-radix-icons";
 
 const GAP = 32;
 const MARGIN = 6;

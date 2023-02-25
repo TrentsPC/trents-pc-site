@@ -5,13 +5,13 @@ import { zork } from "~/modules/zork/zMachine";
 import { style } from "@macaron-css/core";
 import { hcl } from "~/modules/color";
 import { theme } from "~/theme";
-import { ChevronLeftIcon } from "~/icons/radix";
 import { generateChain } from "~/modules/markov";
 import {
   CLARENCE_CLARITY_MODEL,
   JOCKSTRAP_MODEL,
 } from "~/modules/markov/models";
 import { ChatBubbleIcon } from "~/icons/material";
+import { ChevronLeftIcon } from "solid-radix-icons";
 
 type Message = { text: string; options: any; side: "left" | "right" };
 

@@ -10,11 +10,11 @@ import {
   onMount,
 } from "solid-js";
 import { isServer } from "solid-js/web";
-import { HeartFilledIcon } from "~/icons/radix";
 import { theme } from "~/theme";
 import { createBeatRacer } from "~/modules/beat-racer";
 import { Presence } from "~/modules/radix/solid/Presence";
 import cover from "./gloria-cover.png";
+import { HeartFilledIcon } from "~/icons/radix";
 
 const GAP = 32;
 const MARGIN = 6;

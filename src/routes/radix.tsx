@@ -3,9 +3,9 @@ import { styled } from "@macaron-css/solid";
 import { createSignal } from "solid-js";
 import { isServer } from "solid-js/web";
 import { A, Outlet } from "solid-start";
-import { HeartIcon } from "~/icons/radix";
 import { theme } from "~/theme";
 import "~/constants/suture.config";
+import { HeartIcon } from "solid-radix-icons";
 
 function TPCIcon() {
   return (

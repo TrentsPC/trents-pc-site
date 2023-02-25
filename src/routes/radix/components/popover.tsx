@@ -1,11 +1,12 @@
+import { Cross2Icon } from "solid-radix-icons";
 import {
   Description,
   HeroCodeBlock,
   HeroContainer,
   Highlights,
 } from "~/components/docs";
-import { Cross2Icon, MixerHorizontalIcon } from "~/icons/radix";
 import { Popover } from "~/modules/radix";
+import { MixerHorizontalIcon } from "solid-radix-icons";
 
 export default function Page() {
   return (

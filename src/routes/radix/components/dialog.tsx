@@ -1,7 +1,7 @@
 import { style } from "@macaron-css/core";
 import { styled } from "@macaron-css/solid";
+import { Cross2Icon } from "solid-radix-icons";
 import { Description, HeroContainer, Highlights } from "~/components/docs";
-import { Cross2Icon } from "~/icons/radix";
 import { Dialog } from "~/modules/radix";
 import { theme } from "~/theme";
 

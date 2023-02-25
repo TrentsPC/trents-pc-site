@@ -3,7 +3,6 @@ import { keyframes, style } from "@macaron-css/core";
 import { Suspense, createSignal, lazy } from "solid-js";
 import { isServer } from "solid-js/web";
 import { Title } from "solid-start";
-import { Cross1Icon, HeartIcon } from "~/icons/radix";
 import { theme } from "~/theme";
 import Balancer from "~/modules/wrap-balancer";
 import "~/modules/zork";
@@ -14,10 +13,17 @@ import { Recaptcha } from "~/components/Recaptcha";
 import { HistoryRacer } from "~/components/HistoryRacer";
 
 import "~/modules/markov";
+import { clicker } from "~/modules/clicker";
+import { InspectGame } from "~/modules/inspect-game";
+import { Cross1Icon, HeartIcon } from "solid-radix-icons";
+import { TPCCypher } from "~/icons";
 
 const ChatWidget = lazy(() => import("~/components/ChatWidget"));
 
 const [now, setNow] = createSignal<Date | undefined>(undefined);
+
+const [cookieClicks, setCookieClicks] = createSignal(0);
+const [hasClicked, setHasClicked] = createSignal(false);
 
 function updateDate() {
   setNow(new Date());
@@ -46,6 +52,7 @@ export default function Home() {
   return (
     <>
       <Title>Trents.Computer</Title>
+      <InspectGame />
       <HistoryRacer />
       <SignUpDialog />
       <main
@@ -59,26 +66,47 @@ export default function Home() {
           top: 0,
         })}
       >
-        <div
+        <h1
           class={style({
-            width: 300,
-            height: 300,
-            position: "relative",
+            userSelect: "none",
+            pointerEvents: "none",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            paddingTop: 39,
+            paddingLeft: 39,
+            fontSize: 64,
+            color: "black",
           })}
         >
-          <h1
-            class={style({
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              justifyContent: "end",
-              alignItems: "end",
-              fontSize: 64,
-              color: "black",
-            })}
-          >
-            trent
-          </h1>
+          trent
+        </h1>
+        <div
+          class={style({
+            position: "relative",
+            width: 300,
+            height: 300,
+            borderRadius: "50%",
+            overflow: "hidden",
+            transition: `all 500ms cubic-bezier(.3, .7, .4, 1)`,
+            selectors: {
+              "&:hover": {
+                width: 300 * 1.2,
+                height: 300 * 1.2,
+                transition: `all 250ms cubic-bezier(.3, .7, .4, 1.25)`,
+              },
+              "&:active": {
+                width: 300 * 0.9,
+                height: 300 * 0.9,
+                transition: `all 34ms cubic-bezier(.3, .7, .4, 1)`,
+              },
+            },
+          })}
+          onMouseDown={() => {
+            setHasClicked(true);
+            clicker.click();
+          }}
+        >
           <svg
             style={{ position: "absolute" }}
             width="100%"
@@ -90,24 +118,61 @@ export default function Home() {
               d="M 12 0 L 24 12 L 12 24 L 0 12 Z"
             />
           </svg>
-          <h1
-            class={style({
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              justifyContent: "end",
-              alignItems: "end",
-              fontSize: 64,
-              clipPath: "polygon(0 0, 100% 50%, 50% 100%)",
-              color: "white",
-            })}
-          >
-            trent
-          </h1>
+          {hasClicked() && (
+            <div
+              class={style({
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                fontVariantNumeric: "tabular-nums",
+                fontSize: "48px",
+                fontWeight: 900,
+                lineHeight: 1,
+                pointerEvents: "none",
+                display: "flex",
+                alignItems: "start",
+              })}
+            >
+              <span>{clicker.store.pixels}</span>
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <path fill="white" d="M 12 0 L 24 12 L 12 24 L 0 12 Z" />
+              </svg>
+            </div>
+          )}
         </div>
+        <h1
+          class={style({
+            userSelect: "none",
+            pointerEvents: "none",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            paddingTop: 39,
+            paddingLeft: 39,
+            fontSize: 64,
+            clipPath: "polygon(0 0, 150px 0, 0 150px)",
+            color: "white",
+
+            transition: `clip-path 500ms cubic-bezier(.3, .7, .4, 1)`,
+            selectors: {
+              ":hover + &": {
+                clipPath: `polygon(0 0, ${150 * 1.2}px 0, 0 ${150 * 1.2}px)`,
+                transition: `clip-path 250ms cubic-bezier(.3, .7, .4, 1.25)`,
+              },
+              ":active + &": {
+                clipPath: `polygon(0 0, ${150 * 0.9}px 0, 0 ${150 * 0.9}px)`,
+                transition: `clip-path 34ms cubic-bezier(.3, .7, .4, 1)`,
+              },
+            },
+          })}
+        >
+          trent
+        </h1>
       </main>
 
-      <section
+      {/* <section
         class={style({
           width: "100vw",
           height: "100vh",
@@ -132,7 +197,7 @@ export default function Home() {
             better ever since.
           </Balancer>
         </p>
-      </section>
+      </section> */}
       <CopyrightNotice>
         Made with{" "}
         <HeartIcon

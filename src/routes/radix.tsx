@@ -114,18 +114,18 @@ export default function RadixLayout() {
           {/* <NavLink href="overview/something">Accessibility</NavLink> */}
           {/* <NavLink href="overview/something">Server side rendering</NavLink> */}
           {/* <NavLink href="overview/something">Releases</NavLink> */}
-          <NavHeading>Components</NavHeading>
+          {/* <NavHeading>Components</NavHeading> */}
           {/* <NavLink href="components/something">Accordion</NavLink> */}
           {/* <NavLink href="components/something">Alert Dialog</NavLink> */}
-          <NavLink href="components/aspect-ratio">Aspect Ratio</NavLink>
-          <NavLink href="components/avatar">Avatar</NavLink>
+          {/* <NavLink href="components/aspect-ratio">Aspect Ratio</NavLink> */}
+          {/* <NavLink href="components/avatar">Avatar</NavLink> */}
           {/* <NavLink href="components/something">Checkbox</NavLink> */}
           {/* <NavLink href="components/something">Collapsible</NavLink> */}
           {/* <NavLink href="components/something">Context Menu</NavLink> */}
-          <NavLink href="components/dialog">Dialog</NavLink>
+          {/* <NavLink href="components/dialog">Dialog</NavLink> */}
           {/* <NavLink href="components/something">Dropdown Menu</NavLink> */}
           {/* <NavLink href="components/something">Hover Card</NavLink> */}
-          <NavLink href="components/label">Label</NavLink>
+          {/* <NavLink href="components/label">Label</NavLink> */}
           {/* <NavLink href="components/something">Menubar</NavLink> */}
           {/* <NavLink href="components/something">Popover</NavLink> */}
           {/* <NavLink href="components/something">Progress</NavLink> */}
@@ -141,10 +141,10 @@ export default function RadixLayout() {
           {/* <NavLink href="components/something">Toggle Group</NavLink> */}
           {/* <NavLink href="components/something">Toolbar</NavLink> */}
           {/* <NavLink href="components/something">Tooltip</NavLink> */}
-          <NavHeading>Utilities</NavHeading>
-          <NavLink href="utilities/something">Direction Provider</NavLink>
-          <NavLink href="utilities/something">Slot</NavLink>
-          <NavLink href="utilities/something">Visually Hidden</NavLink>
+          {/* <NavHeading>Utilities</NavHeading> */}
+          {/* <NavLink href="utilities/something">Direction Provider</NavLink> */}
+          {/* <NavLink href="utilities/something">Slot</NavLink> */}
+          {/* <NavLink href="utilities/something">Visually Hidden</NavLink> */}
           <CopyrightNotice>
             Made with{" "}
             <HeartIcon

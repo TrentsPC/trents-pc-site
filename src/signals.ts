@@ -6,7 +6,6 @@ function getInitialHue() {
     return Date.now() % 360;
   } else {
     let hue = Number(document.documentElement.style.getPropertyValue("--hue"));
-    console.log(hue);
     if (isFinite(hue)) {
       return hue;
     }

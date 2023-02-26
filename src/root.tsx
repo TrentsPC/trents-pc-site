@@ -12,6 +12,7 @@ import {
   Title,
 } from "solid-start";
 import "./root.css";
+import "virtual:windi.css";
 import { hcl } from "./modules/color";
 import { hue } from "./signals";
 
@@ -20,6 +21,7 @@ export default function Root() {
     <Html
       lang="en"
       style={{
+        "--hue": hue(),
         "--color-brand": hcl(hue(), 27, 80),
         "--color-brand2": hcl(hue() - 10, 27, 80),
         "--color-brand3": hcl(hue() - 20, 27, 80),

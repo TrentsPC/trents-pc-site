@@ -4,6 +4,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { macaronVitePlugin } from "@macaron-css/vite";
 import { defineConfig } from "vite";
 import devtools from "solid-devtools/vite";
+import WindiCSS from "vite-plugin-windicss";
 // import suture from "./src/modules/suture/vite";
 
 export default defineConfig({
@@ -21,6 +22,7 @@ export default defineConfig({
     solid({
       adapter: vercel(),
     }),
+    WindiCSS(),
     visualizer({ brotliSize: true, template: "treemap" }) as any,
   ],
 });

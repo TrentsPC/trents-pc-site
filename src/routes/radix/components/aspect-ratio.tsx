@@ -8,7 +8,7 @@ import {
   Pre,
   PropsTable,
 } from "~/components/docs";
-import { AspectRatio } from "~/modules/radix";
+import { AspectRatio } from "~/modules/solid-radix";
 
 export default function Page() {
   return (
@@ -114,7 +114,7 @@ function AspectRatioDemo() {
         boxShadow: "0 2px 10px rgba(0, 0, 0, 0.14)",
       })}
     >
-      <AspectRatio.Root ratio={16 / 9}>
+      <AspectRatio ratio={16 / 9}>
         <img
           class={style({
             objectFit: "cover",
@@ -124,7 +124,7 @@ function AspectRatioDemo() {
           src="https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=300&dpr=2&q=80"
           alt="Landscape photograph by Tobias Tullius"
         />
-      </AspectRatio.Root>
+      </AspectRatio>
     </div>
   );
 }

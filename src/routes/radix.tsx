@@ -109,9 +109,10 @@ export default function RadixLayout() {
           {/* <NavLink href="components/tooltip">Tooltip</NavLink> */}
           <NavHeading>Utilities</NavHeading>
           {/* <NavLink href="utilities/direction-provider">Direction Provider</NavLink> */}
+          <NavLink href="utilities/accessible-icon">Accessible Icon</NavLink>
+          <NavLink href="utilities/presence">Presence</NavLink>
           <NavLink href="utilities/slot">Slot</NavLink>
-          <NavLink href="utilities/visible">Visible</NavLink>
-          {/* <NavLink href="utilities/visually-hidden">Visually Hidden</NavLink> */}
+          <NavLink href="utilities/visually-hidden">Visually Hidden</NavLink>
           <CopyrightNotice>
             Made with{" "}
             <HeartIcon

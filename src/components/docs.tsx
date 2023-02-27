@@ -1,7 +1,9 @@
 import { style } from "@macaron-css/core";
 import { styled } from "@macaron-css/solid";
-import { For, JSX, createEffect, createSignal } from "solid-js";
+import { For, JSX, createEffect, createSignal, onMount } from "solid-js";
+import s from "./code.module.css";
 import { theme } from "~/theme";
+import { Prism } from "~/utils/prism";
 
 export const Description = styled("p", {
   base: {
@@ -11,8 +13,16 @@ export const Description = styled("p", {
     color: theme.text2,
   },
 });
-
 export function Pre(props: { children: string; language?: string }) {
+  let ref: HTMLElement = null!;
+  onMount(() => {
+    let e = Prism.highlight(
+      props.children,
+      Prism.languages[props.language || "tsx"],
+      props.language || "tsx"
+    );
+    ref.innerHTML = e;
+  });
   return (
     <pre
       class={style({
@@ -27,7 +37,9 @@ export function Pre(props: { children: string; language?: string }) {
         color: "white",
       })}
     >
-      <code>{props.children}</code>
+      <code ref={ref} class={s.code}>
+        {props.children}
+      </code>
     </pre>
   );
 }

@@ -1,0 +1,35 @@
+.code {
+  --text: #e4f0fb;
+  --green: #5de4c7;
+  --red: #d0679d;
+  --blue: #add7ff;
+  --dark-blue: #91b4d5;
+  --gray: #a6accd;
+}
+.code :global(.keyword) {
+  color: var(--green);
+}
+.code :global(.string) {
+  color: var(--green);
+}
+.code :global(.class-name) {
+  color: var(--green);
+}
+.code :global(.console) {
+  color: var(--text);
+}
+.code :global(.tag) {
+  color: var(--green);
+}
+.code :global(.attr-name) {
+  color: var(--dark-blue);
+}
+.code :global(.imports) {
+  color: var(--blue);
+}
+.code :global(.script) {
+  color: var(--text);
+}
+.code :global(.punctuation) {
+  color: var(--gray);
+}

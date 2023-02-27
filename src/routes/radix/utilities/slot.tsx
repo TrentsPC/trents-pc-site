@@ -1,5 +1,5 @@
 import { Description, Highlights, Pre } from "~/components/docs";
-import { Slot } from "~/modules/radix";
+import { Slot } from "~/modules/solid-radix";
 
 export default function SlotPage() {
   return (
@@ -9,17 +9,7 @@ export default function SlotPage() {
       <Highlights
         features={["Can be used to support your own `asChild` prop."]}
       />
-      <Slot class="parent" onClick={(e) => console.log("hi", e)}>
-        <div
-          class="child"
-          onClick={(e) => {
-            console.log("prevent");
-            e.preventDefault();
-          }}
-        >
-          hi
-        </div>
-      </Slot>
+
       <Pre>{`import { Slot } from '@radix-ui/react-slot';
 
 export default () => (

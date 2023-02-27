@@ -6,6 +6,7 @@ import { A, Outlet } from "solid-start";
 import { theme } from "~/theme";
 import "~/constants/suture.config";
 import { HeartIcon } from "solid-radix-icons";
+import { SiteWordmark } from "~/components/SiteWordmark";
 
 function TPCIcon() {
   return (
@@ -63,42 +64,7 @@ export default function RadixLayout() {
             borderColor: "transparent",
           })}
         >
-          <div
-            class={style({
-              position: "relative",
-              width: 200,
-            })}
-          >
-            <p
-              class={style({
-                position: "absolute",
-                bottom: 0,
-                left: 17,
-                zIndex: -1,
-                fontSize: 22,
-                lineHeight: "28px",
-              })}
-            >
-              solid radix
-            </p>
-            <TPCIcon />
-            <p
-              class={style({
-                position: "absolute",
-                bottom: 0,
-                left: 17,
-                fontSize: 22,
-                lineHeight: "28px",
-
-                color: "white",
-                zIndex: 1,
-                clipPath: "polygon(0 0, 28px 0, 0 28px)",
-              })}
-              aria-hidden="true"
-            >
-              solid radix
-            </p>
-          </div>
+          <SiteWordmark title="solid radix" />
         </div>
         <div
           class={style({
@@ -108,43 +74,44 @@ export default function RadixLayout() {
         >
           <NavHeading>Overview</NavHeading>
           <NavLink href="overview/introduction">Introduction</NavLink>
-          {/* <NavLink href="overview/something">Getting started</NavLink> */}
-          {/* <NavLink href="overview/something">Styling</NavLink> */}
-          {/* <NavLink href="overview/something">Animation</NavLink> */}
-          {/* <NavLink href="overview/something">Accessibility</NavLink> */}
-          {/* <NavLink href="overview/something">Server side rendering</NavLink> */}
-          {/* <NavLink href="overview/something">Releases</NavLink> */}
-          {/* <NavHeading>Components</NavHeading> */}
-          {/* <NavLink href="components/something">Accordion</NavLink> */}
-          {/* <NavLink href="components/something">Alert Dialog</NavLink> */}
-          {/* <NavLink href="components/aspect-ratio">Aspect Ratio</NavLink> */}
+          {/* <NavLink href="overview/getting-started">Getting started</NavLink> */}
+          {/* <NavLink href="overview/styling">Styling</NavLink> */}
+          {/* <NavLink href="overview/animation">Animation</NavLink> */}
+          {/* <NavLink href="overview/accessibility">Accessibility</NavLink> */}
+          {/* <NavLink href="overview/ssr">Server side rendering</NavLink> */}
+          {/* <NavLink href="overview/releases">Releases</NavLink> */}
+          <NavHeading>Components</NavHeading>
+          {/* <NavLink href="components/accordion">Accordion</NavLink> */}
+          {/* <NavLink href="components/alert-dialog">Alert Dialog</NavLink> */}
+          <NavLink href="components/aspect-ratio">Aspect Ratio</NavLink>
           {/* <NavLink href="components/avatar">Avatar</NavLink> */}
-          {/* <NavLink href="components/something">Checkbox</NavLink> */}
-          {/* <NavLink href="components/something">Collapsible</NavLink> */}
-          {/* <NavLink href="components/something">Context Menu</NavLink> */}
+          {/* <NavLink href="components/checkbox">Checkbox</NavLink> */}
+          {/* <NavLink href="components/collapsible">Collapsible</NavLink> */}
+          {/* <NavLink href="components/context-menu">Context Menu</NavLink> */}
           {/* <NavLink href="components/dialog">Dialog</NavLink> */}
-          {/* <NavLink href="components/something">Dropdown Menu</NavLink> */}
-          {/* <NavLink href="components/something">Hover Card</NavLink> */}
-          {/* <NavLink href="components/label">Label</NavLink> */}
-          {/* <NavLink href="components/something">Menubar</NavLink> */}
-          {/* <NavLink href="components/something">Popover</NavLink> */}
-          {/* <NavLink href="components/something">Progress</NavLink> */}
-          {/* <NavLink href="components/something">Radio Group</NavLink> */}
-          {/* <NavLink href="components/something">Scroll Area</NavLink> */}
-          {/* <NavLink href="components/something">Select</NavLink> */}
-          {/* <NavLink href="components/something">Separator</NavLink> */}
-          {/* <NavLink href="components/something">Slider</NavLink> */}
-          {/* <NavLink href="components/something">Switch</NavLink> */}
-          {/* <NavLink href="components/something">Tabs</NavLink> */}
-          {/* <NavLink href="components/something">Toast</NavLink> */}
-          {/* <NavLink href="components/something">Toggle</NavLink> */}
-          {/* <NavLink href="components/something">Toggle Group</NavLink> */}
-          {/* <NavLink href="components/something">Toolbar</NavLink> */}
-          {/* <NavLink href="components/something">Tooltip</NavLink> */}
-          {/* <NavHeading>Utilities</NavHeading> */}
-          {/* <NavLink href="utilities/something">Direction Provider</NavLink> */}
-          {/* <NavLink href="utilities/something">Slot</NavLink> */}
-          {/* <NavLink href="utilities/something">Visually Hidden</NavLink> */}
+          {/* <NavLink href="components/dropdown-menu">Dropdown Menu</NavLink> */}
+          {/* <NavLink href="components/hover-card">Hover Card</NavLink> */}
+          <NavLink href="components/label">Label</NavLink>
+          {/* <NavLink href="components/menubar">Menubar</NavLink> */}
+          {/* <NavLink href="components/popover">Popover</NavLink> */}
+          {/* <NavLink href="components/progress">Progress</NavLink> */}
+          {/* <NavLink href="components/radio-group">Radio Group</NavLink> */}
+          {/* <NavLink href="components/scroll-area">Scroll Area</NavLink> */}
+          {/* <NavLink href="components/select">Select</NavLink> */}
+          <NavLink href="components/separator">Separator</NavLink>
+          {/* <NavLink href="components/slider">Slider</NavLink> */}
+          {/* <NavLink href="components/switch">Switch</NavLink> */}
+          {/* <NavLink href="components/tabs">Tabs</NavLink> */}
+          {/* <NavLink href="components/toast">Toast</NavLink> */}
+          <NavLink href="components/toggle">Toggle</NavLink>
+          {/* <NavLink href="components/toggle-group">Toggle Group</NavLink> */}
+          {/* <NavLink href="components/toolbar">Toolbar</NavLink> */}
+          {/* <NavLink href="components/tooltip">Tooltip</NavLink> */}
+          <NavHeading>Utilities</NavHeading>
+          {/* <NavLink href="utilities/direction-provider">Direction Provider</NavLink> */}
+          <NavLink href="utilities/slot">Slot</NavLink>
+          <NavLink href="utilities/visible">Visible</NavLink>
+          {/* <NavLink href="utilities/visually-hidden">Visually Hidden</NavLink> */}
           <CopyrightNotice>
             Made with{" "}
             <HeartIcon

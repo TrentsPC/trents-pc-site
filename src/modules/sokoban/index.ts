@@ -210,24 +210,24 @@ class Sokoban {
 
 const sokoban = new Sokoban();
 const levels = parseLevelSet(MICROBAN1);
-sokoban.loadLevel(levels[0]);
-sokoban.render();
-console.log("control using `w`, `a`, `s`, `d`, restart with `r`.");
-
-function registerCommand(fn: () => void, names: string) {
-  var evaluate = function (cmd: any, args: any) {
-    fn.apply(sokoban, args);
-  };
-  names.split(",").forEach(function (cmd) {
-    var obj = {
-      get: function () {
-        return evaluate(cmd, arguments);
-      },
-    };
-    Object.defineProperty(window, cmd, obj);
-  });
-}
 if (!isServer) {
+  sokoban.loadLevel(levels[0]);
+  sokoban.render();
+  console.log("control using `w`, `a`, `s`, `d`, restart with `r`.");
+
+  function registerCommand(fn: () => void, names: string) {
+    var evaluate = function (cmd: any, args: any) {
+      fn.apply(sokoban, args);
+    };
+    names.split(",").forEach(function (cmd) {
+      var obj = {
+        get: function () {
+          return evaluate(cmd, arguments);
+        },
+      };
+      Object.defineProperty(window, cmd, obj);
+    });
+  }
   registerCommand(() => sokoban.up(), "w,W,up");
   registerCommand(() => sokoban.down(), "s,S,down");
   registerCommand(() => sokoban.left(), "a,A,left");

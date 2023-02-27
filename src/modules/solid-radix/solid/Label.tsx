@@ -1,10 +1,11 @@
-import { JSX } from "solid-js";
+import { Dynamic } from "solid-js/web";
+import { Primitive, PrimitiveProps } from "./Primitive";
 
-export type LabelProps = JSX.HTMLAttributes<HTMLLabelElement>;
+export type LabelProps = PrimitiveProps<"label">;
 
-export const Label = (props: LabelProps) => {
+export function Label(props: LabelProps) {
   return (
-    <label
+    <Primitive.label
       {...props}
       onMouseDown={(event) => {
         if (typeof props.onMouseDown === "function") {
@@ -15,4 +16,4 @@ export const Label = (props: LabelProps) => {
       }}
     />
   );
-};
+}

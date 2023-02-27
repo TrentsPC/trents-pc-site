@@ -32,20 +32,19 @@ export default function Introduction() {
       </p>
       <h2>Acknowledgments</h2>
       <p>
-        Large portions of the codebase for <code>solid-radix</code> and the
-        writing for the documentation you are reading right now is ripped
-        wholesale from Radix UI, and thats a good thing. Radix UI has better DX
-        than anything in the Solid ecosystem, and any deviation would make this
+        Large portions of the codebase for <code>solid-radix</code> and of the
+        documentation you are reading right now are ripped wholesale from Radix
+        UI, and thats a good thing. Radix UI has better DX than anything I've
+        seen in the Solid ecosystem so far, and any deviation would make this
         library actively worse. All credit goes to the Radix team, any mistakes
         are my own.
       </p>
       <h2>Limitations</h2>
-      {/* <p>
-          I am a dumb bitch<sup>[citation needed]</sup>. This is my first
-          library written using Solid and as such I make no promises as to its
-          performance or stability. If you're a less dumb bitch, feel free to
-          send in a PR for anything wonky.
-        </p> */}
+      <p>
+        I am a dumb bitch<sup>[citation needed]</sup>, and as such I make no
+        promises as to performance or stability. Feel free to send a PR if
+        anything's wonky.
+      </p>
       {/* <p>PRs will be prioritized by:</p>
         <ol>
           <li>Getting closer to 1:1 feature parity to Radix UI</li>

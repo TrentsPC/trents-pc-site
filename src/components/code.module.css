@@ -1,5 +1,6 @@
 .code {
   --text: #e4f0fb;
+  --dark-text: #e4f0fbd0;
   --green: #5de4c7;
   --red: #d0679d;
   --blue: #add7ff;
@@ -14,6 +15,9 @@
 }
 .code :global(.class-name) {
   color: var(--green);
+}
+.code :global(.function) {
+  color: var(--blue);
 }
 .code :global(.console) {
   color: var(--text);
@@ -32,4 +36,11 @@
 }
 .code :global(.punctuation) {
   color: var(--gray);
+}
+.code :global(.comment) {
+  color: var(--gray);
+}
+
+.code :global(.property-access):global(.function) {
+  color: var(--dark-text);
 }

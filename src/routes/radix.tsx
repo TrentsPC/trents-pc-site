@@ -51,6 +51,13 @@ export default function RadixLayout() {
           bottom: 0,
           left: 0,
           width: 250,
+
+          display: "none",
+          "@media": {
+            "(min-width: 960px)": {
+              display: "block",
+            },
+          },
         })}
       >
         <div
@@ -140,9 +147,30 @@ export default function RadixLayout() {
           </CopyrightNotice>
         </div>
       </div>
-      <Prose>
-        <Outlet />
-      </Prose>
+      <div class="flex">
+        <div
+          class={style({
+            "@media": {
+              "(min-width: 960px)": {
+                minWidth: "250px",
+              },
+            },
+          })}
+        />
+        <Prose>
+          <Outlet />
+        </Prose>
+        <div
+          class={style({
+            "@media": {
+              "(min-width: 960px)": {
+                width: "250px",
+                flexShrink: 9999999,
+              },
+            },
+          })}
+        />
+      </div>
     </>
   );
 }
@@ -214,6 +242,12 @@ globalStyle(`${Prose} h2`, {
   fontSize: "1.5em",
   marginTop: "2em",
   marginBottom: "1em",
+  lineHeight: "1.3333333",
+});
+globalStyle(`${Prose} h3`, {
+  fontSize: "19px",
+  marginTop: "44px",
+  marginBottom: "8px",
   lineHeight: "1.3333333",
 });
 

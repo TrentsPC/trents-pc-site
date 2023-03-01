@@ -18,12 +18,14 @@ function hasAnimation(el: HTMLElement) {
 export function Presence(props: { visible: boolean; children: JSX.Element }) {
   let first = true;
   const [show, setShow] = createSignal(props.visible);
-  const resolved = children(() => props.children);
+  const resolved = children(() => show() && props.children);
 
   let child = createMemo(() => {
     // return props.children;
     let el = resolved() as Element;
+    if (!el) return el;
     while (typeof el === "function") el = (el as Function)();
+    if (typeof el !== "object") return el;
 
     if (!isServer) {
       function endTransition(e?: Event) {

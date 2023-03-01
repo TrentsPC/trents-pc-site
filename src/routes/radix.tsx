@@ -101,7 +101,7 @@ export default function RadixLayout() {
           <NavLink href="components/label">Label</NavLink>
           {/* <NavLink href="components/menubar">Menubar</NavLink> */}
           {/* <NavLink href="components/popover">Popover</NavLink> */}
-          {/* <NavLink href="components/progress">Progress</NavLink> */}
+          <NavLink href="components/progress">Progress</NavLink>
           {/* <NavLink href="components/radio-group">Radio Group</NavLink> */}
           {/* <NavLink href="components/scroll-area">Scroll Area</NavLink> */}
           {/* <NavLink href="components/select">Select</NavLink> */}

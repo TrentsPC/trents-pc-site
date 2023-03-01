@@ -64,8 +64,8 @@ export default () => (
           attributes, <em>not</em> the child component props
         </strong>
         . For components where the interactive element is the root element,
-        there should be no difference with this approach. But in some components
-        it may act in unexpected ways:
+        there should be no difference with this approach. But in other
+        components it may act in unexpected ways:
       </p>
       <Pre>{`// labelled-button.jsx
 

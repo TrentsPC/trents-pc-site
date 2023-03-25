@@ -33,7 +33,9 @@ function createClicker() {
       localStorage.setItem("pixel", JSON.stringify(clickerStore));
     }
   }
-  setInterval(save, ONE_MINUTE_IN_MILLIS);
+  if (!isServer) {
+    setInterval(save, ONE_MINUTE_IN_MILLIS);
+  }
   save();
 
   // Game.Object=function(name,commonName,desc,icon,iconColumn,art,price,cps,buyFunction)

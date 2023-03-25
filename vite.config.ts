@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 import WindiCSS from "vite-plugin-windicss";
 import { prismjsPlugin } from "vite-plugin-prismjs";
 import inlineCss from "vite-plugin-inline-css-modules";
-import cloudflare from "solid-start-cloudflare-pages";
+import cloudflare from "solid-start-cloudflare-workers";
 // import suture from "./src/modules/suture/vite";
 
 export default defineConfig({

@@ -1,12 +1,11 @@
 import solid from "solid-start/vite";
-import vercel from "solid-start-vercel";
 import { visualizer } from "rollup-plugin-visualizer";
 import { macaronVitePlugin } from "@macaron-css/vite";
 import { defineConfig } from "vite";
-import devtools from "solid-devtools/vite";
 import WindiCSS from "vite-plugin-windicss";
 import { prismjsPlugin } from "vite-plugin-prismjs";
 import inlineCss from "vite-plugin-inline-css-modules";
+import cloudflare from "solid-start-cloudflare-pages";
 // import suture from "./src/modules/suture/vite";
 
 export default defineConfig({
@@ -34,7 +33,7 @@ export default defineConfig({
     // }),
     // suture(),
     solid({
-      adapter: vercel(),
+      adapter: cloudflare({}),
     }),
     WindiCSS(),
     visualizer({ brotliSize: true, template: "treemap" }) as any,

@@ -39,6 +39,7 @@
     "@vanilla-extract/recipes": "^0.3.0",
     "prismjs": "^1.29.0",
     "solid-js": "^1.6.11",
+    "solid-radix": "^0.0.4",
     "solid-radix-icons": "^0.1.1",
     "solid-start": "^0.2.22",
     "solid-transition-group": "^0.0.13",

@@ -7,7 +7,7 @@ import {
 } from "solid-js";
 import { isServer } from "solid-js/web";
 
-// Not too fond of how much i had to copy out of `solid-js/web`, but ssr seemed to break if i just imported
+// Not too fond of how much i had to copy out of `dom-expressions`
 
 const DelegatedEvents = /*#__PURE__*/ new Set([
   "beforeinput",

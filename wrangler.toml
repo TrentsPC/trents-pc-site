@@ -1,0 +1,9 @@
+name = "trents-pc-site"
+compatibility_date = "2023-03-25"
+account_id = "db0779db1eebaa1a7061f7828b9bd04f"
+zone_id = "3fc260f470c3a53de320f56fdb178a56"
+node_compat = true
+
+main = "./dist/server.js"
+[site]
+bucket= "./dist/public"

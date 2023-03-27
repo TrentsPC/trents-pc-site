@@ -5,6 +5,7 @@ dist
 .output
 .vercel
 .netlify
+functions
 netlify
 
 # dependencies

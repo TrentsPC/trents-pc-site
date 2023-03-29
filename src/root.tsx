@@ -1,11 +1,5 @@
 // @refresh reload
-import {
-  Suspense,
-  createResource,
-  createSignal,
-  onCleanup,
-  onMount,
-} from "solid-js";
+import { Suspense, createSignal, onCleanup, onMount } from "solid-js";
 import {
   Body,
   ErrorBoundary,
@@ -16,28 +10,12 @@ import {
   Routes,
   Scripts,
   Title,
-  useRouteData,
 } from "solid-start";
 import "./root.css";
 import "virtual:windi.css";
 import { hcl } from "./modules/color";
-import { createServerData$ } from "solid-start/server";
-
-// export function routeData() {
-//   const [initialHue] = createResource(async () => {
-//     return Date.now() % 360;
-//   });
-
-//   return { initialHue };
-// }
-
-// export function routeData() {
-//   return createServerData$(() => Date.now() % 360);
-// }
 
 export default function Root() {
-  // const initialHue = useRouteData<typeof routeData>();
-  // console.log(initialHue);
   const [hue, setHue] = createSignal(0);
 
   onMount(() => {

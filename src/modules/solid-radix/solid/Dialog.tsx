@@ -16,7 +16,7 @@ import { Portal } from "solid-js/web";
 import { Presence } from "./Presence";
 import { Slot } from "./Slot";
 import { RemoveScroll } from "./RemoveScroll";
-import { DismissibleLayer, DismissibleLayerProps } from "./Dismissiblelayer";
+import { DismissibleLayer, DismissibleLayerProps } from "./DismissibleLayer";
 import { FocusScope } from "./FocusScope";
 
 /* -------------------------------------------------------------------------------------------------

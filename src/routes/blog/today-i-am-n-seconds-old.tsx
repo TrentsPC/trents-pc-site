@@ -1,5 +1,6 @@
 import { createSignal, onCleanup } from "solid-js";
 import { css } from "vite-plugin-inline-css-modules";
+import { FontTables, HexViewer } from "~/modules/font-explorer";
 
 const BDAY_MILLIS = 1038913200000;
 
@@ -14,6 +15,10 @@ export default function Page() {
       <div class={s.titleBox}>
         <h1>Today I am {secondsOld()} seconds old</h1>
       </div>
+      <h2>Hex viewer</h2>
+      <HexViewer />
+      {/* <h2>Font tables</h2> */}
+      {/* <FontTables /> */}
     </div>
   );
 }

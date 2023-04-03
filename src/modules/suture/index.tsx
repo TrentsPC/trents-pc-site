@@ -3,11 +3,11 @@ import { Suture } from "./types/suture";
 
 export const createSuture = ((options: any) => {
   const keyframes: Suture["keyframes"] = () => {
-    throw new Error("Vite plugin not installed correctly");
+    throw new Error("`Suture`: Vite plugin not installed correctly");
   };
 
   const css: Suture["css"] = () => {
-    throw new Error("Vite plugin not installed correctly");
+    throw new Error("`Suture`: Vite plugin not installed correctly");
   };
 
   return {
@@ -19,5 +19,18 @@ export const createSuture = ((options: any) => {
     css,
   };
 }) as CreateSuture;
+
+export interface Register {
+  theme: any;
+}
+
+export const theme: Register["theme"] = new Proxy(
+  {},
+  {
+    get: (target, prop) => {
+      throw new Error("`Suture`: Vite plugin not installed correctly");
+    },
+  }
+);
 
 export { CSS, CSSProperties };

@@ -17,16 +17,38 @@ import { clicker } from "~/modules/clicker";
 import { InspectGame } from "~/modules/inspect-game";
 import { Cross1Icon, HeartIcon } from "solid-radix-icons";
 import { TPCCypher } from "~/icons";
+import { IBM_EPOCH } from "~/constants";
+
+function createIBMInfo() {
+  let now = Date.now();
+  let millisSince = now - IBM_EPOCH;
+  let seconds = Math.floor(millisSince / 1000);
+  let minutes = Math.floor(seconds / 60);
+  let hours = Math.floor(minutes / 60);
+  let days = Math.floor(hours / 24);
+  let weeks = Math.floor(days / 7);
+  return {
+    seconds,
+    minutes,
+    hours,
+    days,
+    weeks,
+  };
+}
 
 const ChatWidget = lazy(() => import("~/components/ChatWidget"));
 
 const [now, setNow] = createSignal<Date | undefined>(undefined);
+const [ibmInfo, setIBMInfo] = createSignal<ReturnType<typeof createIBMInfo>>(
+  createIBMInfo()
+);
 
 const [cookieClicks, setCookieClicks] = createSignal(0);
 const [hasClicked, setHasClicked] = createSignal(false);
 
 function updateDate() {
   setNow(new Date());
+  setIBMInfo(createIBMInfo());
   requestAnimationFrame(() => {
     updateDate();
   });
@@ -198,6 +220,23 @@ export default function Home() {
           </Balancer>
         </p>
       </section> */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+        }}
+      >
+        {ibmInfo().days} days
+        <br />
+        {ibmInfo().hours % 24} {ibmInfo().hours % 24 === 1 ? "hour" : "hours"}
+        <br />
+        {ibmInfo().minutes % 60}{" "}
+        {ibmInfo().minutes % 60 === 1 ? "minute" : "minutes"}
+        <br />
+        {ibmInfo().seconds % 60}{" "}
+        {ibmInfo().seconds % 60 === 1 ? "second" : "seconds"}
+      </div>
       <CopyrightNotice>
         Made with{" "}
         <HeartIcon
